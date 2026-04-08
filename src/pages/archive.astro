@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAllPosts } from "../data/posts";
+import "../styles/style.css";
+
+const posts = await getAllPosts();
+
+const groups = posts.reduce<Record<string, typeof posts>>((result, post) => {
+  const year = post.createTime.slice(0, 4);
+
+  if (!result[year]) {
+    result[year] = [];
+  }
+
+  result[year].push(post);
+  return result;
+}, {});
+
+const years = Object.keys(groups).sort((left, right) => Number(right) - Number(left));
+---
+
+<BaseLayout title="归档 | Crossing Notes">
+  <div class="map-world map-world--plain map-world--desktop-only">
+    <div class="map-world__pattern"></div>
+
+    <nav class="hero__hud hero__hud--plain" aria-label="Archive navigation">
+      <a href="/">首页</a>
+      <a href="/archive" aria-current="page">归档</a>
+      <a href="/about">关于</a>
+    </nav>
+
+    <main class="plain-page">
+      <section class="plain-panel plain-panel--hero">
+        <p class="eyebrow">Archive</p>
+        <h1 class="plain-title">归档</h1>
+      </section>
+
+      <section class="archive-groups-simple">
+        {years.map((year) => (
+          <article class="plain-panel archive-group-simple">
+            <div class="archive-group-simple__head">
+              <h2>{year}</h2>
+              <span>{groups[year].length} 篇</span>
+            </div>
+
+            <div class="archive-group-simple__list">
+              {groups[year].map((post) => (
+                <a class="archive-item-simple" href={`/posts/${post.slug}`}>
+                  <span class="archive-item-simple__title">{post.title}</span>
+                  <time datetime={post.createTime}>{post.formattedDate}</time>
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+  </div>
+
+  <div class="mobile-world">
+    <nav class="mobile-nav" aria-label="Archive navigation">
+      <a href="/">首页</a>
+      <a href="/archive" aria-current="page">归档</a>
+      <a href="/about">关于</a>
+    </nav>
+
+    <main class="mobile-main mobile-main--plain">
+      <section class="mobile-section mobile-section--archive mobile-section--plain">
+        <div
+          class="house mobile-section__ornament mobile-section__ornament--house"
+          style="--angle: 5deg; --scale: 0.52"
+          aria-hidden="true"
+        >
+          <span class="house__roof"></span>
+          <span class="house__body"></span>
+          <span class="house__door"></span>
+        </div>
+
+        <article class="mobile-panel mobile-panel--plain-head">
+          <p class="eyebrow">Archive</p>
+          <h1>归档</h1>
+        </article>
+
+        <div class="mobile-stack mobile-stack--plain">
+          {years.map((year) => (
+            <article class="mobile-panel mobile-panel--plain-card">
+              <div class="mobile-archive-group__head">
+                <h2>{year}</h2>
+                <span>{groups[year].length} 篇</span>
+              </div>
+
+              <div class="mobile-archive-group__list">
+                {groups[year].map((post) => (
+                  <a class="mobile-archive-item" href={`/posts/${post.slug}`}>
+                    <span class="mobile-archive-item__title">{post.title}</span>
+                    <time datetime={post.createTime}>{post.formattedDate}</time>
+                  </a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

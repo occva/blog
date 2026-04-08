@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/style.css";
+---
+
+<BaseLayout title="关于 | Crossing Notes">
+  <div class="map-world map-world--plain map-world--desktop-only">
+    <div class="map-world__pattern"></div>
+
+    <nav class="hero__hud hero__hud--plain" aria-label="About navigation">
+      <a href="/">首页</a>
+      <a href="/archive">归档</a>
+      <a href="/about" aria-current="page">关于</a>
+    </nav>
+
+    <main class="plain-page">
+      <section class="plain-panel plain-panel--hero">
+        <p class="eyebrow">About</p>
+        <h1 class="plain-title">关于</h1>
+      </section>
+
+      <section class="about-grid-simple">
+        <article class="plain-panel about-card-simple">
+          <p class="eyebrow">Direction</p>
+          <h2>保持简单，继续长内容</h2>
+          <p>
+            这套前端没有走重型结构，路由、样式和内容源都尽量保持轻量，方便继续写文章和迭代页面。
+          </p>
+        </article>
+
+        <article class="plain-panel about-card-simple">
+          <p class="eyebrow">Now</p>
+          <h2>当前已经接通的能力</h2>
+          <ul class="field-list">
+            <li>首页保留当前视觉基调。</li>
+            <li>归档页列出文章名和时间。</li>
+            <li>详情页从 Markdown 读取标题、标签和创建时间。</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div class="mobile-world">
+    <nav class="mobile-nav" aria-label="About navigation">
+      <a href="/">首页</a>
+      <a href="/archive">归档</a>
+      <a href="/about" aria-current="page">关于</a>
+    </nav>
+
+    <main class="mobile-main mobile-main--plain">
+      <section class="mobile-section mobile-section--about mobile-section--plain">
+        <div
+          class="house mobile-section__ornament mobile-section__ornament--house"
+          style="--angle: 6deg; --scale: 0.5"
+          aria-hidden="true"
+        >
+          <span class="house__roof"></span>
+          <span class="house__body"></span>
+          <span class="house__door"></span>
+        </div>
+
+        <article class="mobile-panel mobile-panel--plain-head">
+          <p class="eyebrow">About</p>
+          <h1>关于</h1>
+        </article>
+
+        <div class="mobile-stack mobile-stack--plain">
+          <article class="mobile-panel mobile-panel--plain-card">
+            <p class="eyebrow">Direction</p>
+            <h2>保持简单，继续长内容</h2>
+            <p>
+              这套前端没有走重型结构，路由、样式和内容源都尽量保持轻量，方便继续写文章和迭代页面。
+            </p>
+          </article>
+
+          <article class="mobile-panel mobile-panel--plain-card">
+            <p class="eyebrow">Now</p>
+            <h2>当前已经接通的能力</h2>
+            <ul class="mobile-about-list">
+              <li>首页保留当前视觉基调。</li>
+              <li>归档页列出文章名和时间。</li>
+              <li>详情页从 Markdown 读取标题、标签和创建时间。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

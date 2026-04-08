@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllPosts, getPostBySlug } from "../../data/posts";
+import postScript from "../../scripts/post.js?url";
+import "../../styles/style.css";
+
+export const prerender = import.meta.env.PROD;
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const slug = Astro.params.slug ?? "";
+const post = await getPostBySlug(slug);
+
+const punctuationPattern = /[!"#$%&'()*+,./:;<=>?@[\\\]^{|}~]/g;
+
+const createAnchorId = (value: string) =>
+  value
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(punctuationPattern, "")
+    .replaceAll("`", "");
+
+const buildTableOfContents = (
+  headings: Array<{
+    depth: number;
+    text: string;
+  }>,
+) => {
+  const usedAnchors = new Map<string, number>();
+
+  return headings.map((heading) => {
+    const baseAnchor = createAnchorId(heading.text) || "section";
+    const currentCount = (usedAnchors.get(baseAnchor) ?? 0) + 1;
+    const anchorId = currentCount === 1 ? baseAnchor : `${baseAnchor}-${currentCount}`;
+
+    usedAnchors.set(baseAnchor, currentCount);
+
+    return {
+      ...heading,
+      anchorId,
+    };
+  });
+};
+
+if (!post) {
+  Astro.response.status = 404;
+}
+
+const tags = post?.tags ?? [];
+const tableOfContents = post
+  ? buildTableOfContents([
+      {
+        depth: 1,
+        text: post.title,
+      },
+      ...post.headings.filter((heading) => heading.depth === 2),
+    ])
+  : [];
+---
+
+<BaseLayout title={`${post?.title ?? "文章不存在"} | Crossing Notes`}>
+  <Fragment slot="head">
+    <script type="module" src={postScript}></script>
+  </Fragment>
+
+  <div class="map-world map-world--plain">
+    <div class="map-world__pattern"></div>
+
+    <nav class="hero__hud hero__hud--plain" aria-label="Article navigation">
+      <a href="/">首页</a>
+      <a href="/archive">归档</a>
+      <a href="/about">关于</a>
+    </nav>
+
+    <main class="plain-page plain-page--article">
+      {
+        post ? (
+          <>
+            <section
+              class="plain-panel plain-panel--hero article-hero-panel"
+              id={tableOfContents[0]?.anchorId}
+            >
+              <p class="eyebrow">Article</p>
+              <h1 class="plain-title plain-title--article">{post.title}</h1>
+              <div class="article-submeta">
+                <time
+                  class="article-meta-inline article-date-badge"
+                  datetime={post.createTime}
+                >
+                  {post.formattedDate}
+                </time>
+                <div class="tag-list tag-list--inline">
+                  {tags.map((tag) => (
+                    <span class="tag-badge">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section class="article-layout-simple">
+              <article class="plain-panel article-content-panel">
+                <div class="article-body" set:html={post.html}></div>
+              </article>
+            </section>
+          </>
+        ) : (
+          <section class="plain-panel plain-panel--hero article-hero-panel">
+            <p class="eyebrow">404</p>
+            <h1 class="plain-title plain-title--article">文章不存在</h1>
+          </section>
+        )
+      }
+    </main>
+
+    {
+      post && tableOfContents.length > 0 && (
+        <aside class="article-dot-nav" aria-label="文章目录">
+          <nav class="article-dot-nav__list">
+            {tableOfContents.map((heading) => (
+              <a
+                class="article-dot-link"
+                href={`#${heading.anchorId}`}
+                data-anchor-id={heading.anchorId}
+                data-label={heading.text}
+                aria-label={heading.text}
+              />
+            ))}
+          </nav>
+
+          <nav class="article-directory-panel" aria-label="文章目录列表">
+            {tableOfContents.map((heading) => (
+              <a
+                class:list={[
+                  "article-directory-link",
+                  heading.depth === 1 && "article-directory-link--title",
+                ]}
+                href={`#${heading.anchorId}`}
+                data-anchor-id={heading.anchorId}
+              >
+                {heading.text}
+              </a>
+            ))}
+          </nav>
+        </aside>
+      )
+    }
+  </div>
+</BaseLayout>
