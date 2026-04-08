@@ -3,3 +3,4 @@ dist
 .astro
 .run
 .wrangler
+*.log
