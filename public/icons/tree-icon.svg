@@ -1,0 +1,37 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tree-canopy-main" x1="26" y1="20" x2="94" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9BD47D"/>
+      <stop offset="1" stop-color="#5F9652"/>
+    </linearGradient>
+    <linearGradient id="tree-canopy-shadow" x1="44" y1="48" x2="84" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#709D65"/>
+      <stop offset="1" stop-color="#4E7750"/>
+    </linearGradient>
+    <linearGradient id="tree-trunk" x1="57" y1="78" x2="72" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9A7055"/>
+      <stop offset="1" stop-color="#78553F"/>
+    </linearGradient>
+    <linearGradient id="tree-ground" x1="38" y1="92" x2="92" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#87B46A"/>
+      <stop offset="1" stop-color="#668E58"/>
+    </linearGradient>
+    <filter id="tree-shadow" x="14" y="16" width="100" height="104" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#5B8558" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#tree-shadow)">
+    <path d="M40 94C40 84.6112 47.6112 77 57 77H72C81.3888 77 89 84.6112 89 94V97C89 104.18 83.1797 110 76 110H53C45.8203 110 40 104.18 40 97V94Z" fill="url(#tree-ground)"/>
+    <path d="M57 74C57 68.4772 61.4772 64 67 64V64C72.5228 64 77 68.4772 77 74V100H57V74Z" fill="url(#tree-trunk)"/>
+    <path d="M69 34C82.8071 34 94 45.1929 94 59C94 72.8071 82.8071 84 69 84H52C38.1929 84 27 72.8071 27 59C27 45.1929 38.1929 34 52 34H69Z" fill="url(#tree-canopy-main)"/>
+    <path d="M46 30C58.1503 30 68 39.8497 68 52C68 64.1503 58.1503 74 46 74C33.8497 74 24 64.1503 24 52C24 39.8497 33.8497 30 46 30Z" fill="url(#tree-canopy-main)"/>
+    <path d="M82 42C91.9411 42 100 50.0589 100 60C100 69.9411 91.9411 78 82 78C72.0589 78 64 69.9411 64 60C64 50.0589 72.0589 42 82 42Z" fill="url(#tree-canopy-shadow)"/>
+    <path d="M40 40C43.866 40 47 36.866 47 33C47 29.134 43.866 26 40 26C36.134 26 33 29.134 33 33C33 36.866 36.134 40 40 40Z" fill="#B6E6A1" fill-opacity="0.85"/>
+    <path d="M75 47C78.3137 47 81 44.3137 81 41C81 37.6863 78.3137 35 75 35C71.6863 35 69 37.6863 69 41C69 44.3137 71.6863 47 75 47Z" fill="#C6EEB4" fill-opacity="0.8"/>
+    <path d="M55 53C58.3137 53 61 50.3137 61 47C61 43.6863 58.3137 41 55 41C51.6863 41 49 43.6863 49 47C49 50.3137 51.6863 53 55 53Z" fill="#F7C7A2"/>
+    <path d="M43 61C46.0376 61 48.5 58.5376 48.5 55.5C48.5 52.4624 46.0376 50 43 50C39.9624 50 37.5 52.4624 37.5 55.5C37.5 58.5376 39.9624 61 43 61Z" fill="#F3AD95"/>
+    <path d="M68.5 66C71.5376 66 74 63.5376 74 60.5C74 57.4624 71.5376 55 68.5 55C65.4624 55 63 57.4624 63 60.5C63 63.5376 65.4624 66 68.5 66Z" fill="#F6B089"/>
+    <path d="M84 60C87.0376 60 89.5 57.5376 89.5 54.5C89.5 51.4624 87.0376 49 84 49C80.9624 49 78.5 51.4624 78.5 54.5C78.5 57.5376 80.9624 60 84 60Z" fill="#FFD9B9"/>
+  </g>
+</svg>
