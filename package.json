@@ -2,11 +2,16 @@
   "name": "blog",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "22.16.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "pages:preview": "npm run build && npx wrangler pages dev dist",
+    "pages:deploy": "npm run build && npx wrangler pages deploy"
   },
   "devDependencies": {
     "astro": "^6.1.4"
