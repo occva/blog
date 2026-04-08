@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crossing Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="map-world">
+      <div class="map-world__pattern"></div>
+
+      <div class="world-routes" aria-hidden="true">
+        <svg
+          class="world-routes__svg"
+          viewBox="0 0 1980 3500"
+          preserveAspectRatio="none"
+          role="presentation"
+        >
+          <path
+            class="world-routes__road-shadow"
+            d="M 1540 310
+              C 1610 320, 1650 380, 1650 470
+              L 1650 600
+              C 1650 790, 1450 940, 1180 1060
+              C 900 1185, 500 1105, 260 1120
+              C 150 1135, 110 1195, 110 1310
+              L 110 3220
+              C 110 3348, 214 3425, 356 3425
+              L 1380 3425
+              C 1540 3425, 1652 3425, 1730 3425
+              L 1730 3425"
+          ></path>
+          <path
+            class="world-routes__road"
+            d="M 1540 310
+              C 1610 320, 1650 380, 1650 470
+              L 1650 600
+              C 1650 790, 1450 940, 1180 1060
+              C 900 1185, 500 1105, 260 1120
+              C 150 1135, 110 1195, 110 1310
+              L 110 3220
+              C 110 3348, 214 3425, 356 3425
+              L 1380 3425
+              C 1540 3425, 1652 3425, 1730 3425
+              L 1730 3425"
+          ></path>
+          <path
+            class="world-routes__road-core"
+            d="M 1540 310
+              C 1610 320, 1650 380, 1650 470
+              L 1650 600
+              C 1650 790, 1450 940, 1180 1060
+              C 900 1185, 500 1105, 260 1120
+              C 150 1135, 110 1195, 110 1310
+              L 110 3220
+              C 110 3348, 214 3425, 356 3425
+              L 1380 3425
+              C 1540 3425, 1652 3425, 1730 3425
+              L 1730 3425"
+          ></path>
+
+          <circle class="world-routes__node" cx="1650" cy="600" r="42"></circle>
+          <circle
+            class="world-routes__node-core"
+            cx="1650"
+            cy="600"
+            r="22"
+          ></circle>
+          <circle class="world-routes__node" cx="110" cy="1685" r="42"></circle>
+          <circle
+            class="world-routes__node-core"
+            cx="110"
+            cy="1685"
+            r="22"
+          ></circle>
+          <circle class="world-routes__node" cx="110" cy="3220" r="42"></circle>
+          <circle
+            class="world-routes__node-core"
+            cx="110"
+            cy="3220"
+            r="22"
+          ></circle>
+          <circle
+            class="world-routes__node"
+            cx="1730"
+            cy="3425"
+            r="42"
+          ></circle>
+          <circle
+            class="world-routes__node-core"
+            cx="1730"
+            cy="3425"
+            r="22"
+          ></circle>
+        </svg>
+      </div>
+
+      <header class="hero">
+        <div class="hero__hud">
+          <a href="#posts">文章</a>
+          <a href="#garden">归档</a>
+          <a href="#about">关于</a>
+        </div>
+
+        <div class="scene scene--intro map-area map-area--tilt" id="scene">
+          <div class="pond pond--left"></div>
+
+          <div class="tree tree--1"></div>
+          <div class="tree tree--2"></div>
+          <div class="tree tree--4"></div>
+          <div class="tree tree--5"></div>
+          <div class="tree tree--6"></div>
+          <div class="tree tree--7"></div>
+
+          <div class="apple apple--1"></div>
+          <div class="apple apple--2"></div>
+          <div class="apple apple--3"></div>
+          <div class="apple apple--4"></div>
+
+          <div class="spark spark--1"></div>
+          <div class="spark spark--2"></div>
+          <div class="spark spark--3"></div>
+          <div class="spark spark--4"></div>
+          <div class="spark spark--5"></div>
+
+          <div
+            class="house house--top-left"
+            data-reveal="fade"
+            style="--reveal-delay: 0.08s"
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="house house--top-right"
+            data-reveal="fade"
+            style="--reveal-delay: 0.14s"
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="house house--bottom-right"
+            data-reveal="fade"
+            style="--reveal-delay: 0.2s"
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="market-sign"
+            data-reveal="fade"
+            style="--reveal-delay: 0.24s"
+          >
+            Archive
+          </div>
+          <div
+            class="kite"
+            data-reveal="fade"
+            style="left: 12%; top: 10%; --angle: -10deg; --reveal-delay: 0.18s"
+          ></div>
+          <svg
+            class="kite-string kite-string--intro"
+            viewBox="0 0 160 220"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            data-reveal="fade"
+            style="--reveal-delay: 0.2s"
+          >
+            <path
+              d="M18 10 C 58 42, 26 88, 76 126 C 118 158, 102 192, 136 212"
+            />
+          </svg>
+          <div
+            class="walker walker--kite-holder walker--static"
+            data-reveal="fade"
+            style="--angle: 0deg; --scale: 0.88; --reveal-delay: 0.22s"
+          >
+            <span class="walker__head"></span>
+            <span class="walker__body"></span>
+          </div>
+          <div
+            class="notice-board"
+            data-reveal="fade"
+            style="left: 8%; bottom: 24%; --angle: -5deg; --reveal-delay: 0.22s"
+          ></div>
+          <div
+            class="paper-boat"
+            data-reveal="fade"
+            style="
+              left: 12%;
+              bottom: 16%;
+              --angle: -8deg;
+              --reveal-delay: 0.26s;
+            "
+          ></div>
+          <div
+            class="cat"
+            data-reveal="fade"
+            style="right: 23%; bottom: 11%; --angle: 6deg; --reveal-delay: 0.3s"
+          ></div>
+
+          <section class="intro-card">
+            <p class="eyebrow">Personal blog</p>
+            <h1>Crossing Notes</h1>
+            <p class="intro-copy">
+              一个像小镇地图一样展开的博客首页。这里放随笔、开发记录、生活观察，
+              节奏轻一点，视觉也轻一点。
+            </p>
+            <p class="intro-meta">
+              先做出首页气质，后面可以继续接文章列表、分类页和详情页。
+            </p>
+            <div class="intro-actions">
+              <a class="button button--primary" href="#posts">Start Reading</a>
+              <a class="button button--ghost" href="#garden">Explore Garden</a>
+            </div>
+          </section>
+
+          <div
+            class="walker walker--left"
+            data-reveal="fade"
+            style="--reveal-delay: 0.16s"
+          >
+            <span class="walker__head"></span>
+            <span class="walker__body"></span>
+          </div>
+
+          <div
+            class="walker walker--right walker--purple"
+            data-reveal="fade"
+            style="--reveal-delay: 0.24s"
+          >
+            <span class="walker__head"></span>
+            <span class="walker__body"></span>
+          </div>
+        </div>
+      </header>
+
+      <main class="map-main">
+        <section class="district district--reading map-area" id="posts">
+          <div
+            class="pond"
+            style="right: 5%; top: 7%; width: 240px; height: 148px"
+          ></div>
+
+          <div
+            class="tree"
+            style="top: 6%; left: 4%; --angle: -8deg; --scale: 0.94"
+          ></div>
+          <div
+            class="tree"
+            style="top: 18%; right: 27%; --angle: 7deg; --scale: 0.96"
+          ></div>
+          <div
+            class="tree"
+            style="top: 30%; right: 8%; --angle: -7deg; --scale: 1.04"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 18%; left: 22%; --angle: 4deg; --scale: 0.92"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 13%; right: 18%; --angle: -5deg; --scale: 1.08"
+          ></div>
+          <div
+            class="tree"
+            style="top: 54%; left: 7%; --angle: 8deg; --scale: 0.88"
+          ></div>
+
+          <div class="apple" style="left: 18%; top: 21%; --angle: -14deg"></div>
+          <div class="apple" style="right: 15%; top: 40%; --angle: 12deg"></div>
+          <div
+            class="apple"
+            style="left: 10%; bottom: 22%; --angle: -10deg; --scale: 0.82"
+          ></div>
+          <div
+            class="apple"
+            style="right: 31%; bottom: 19%; --angle: 10deg; --scale: 0.9"
+          ></div>
+
+          <div
+            class="spark"
+            style="top: 22%; left: 30%; animation-delay: -1.4s"
+          ></div>
+          <div
+            class="spark"
+            style="top: 57%; right: 12%; animation-delay: -2.6s"
+          ></div>
+          <div
+            class="spark"
+            style="bottom: 24%; left: 42%; animation-delay: -0.9s"
+          ></div>
+          <div
+            class="spark"
+            style="bottom: 14%; right: 37%; animation-delay: -3.4s"
+          ></div>
+
+          <div
+            class="house"
+            data-reveal="fade"
+            style="
+              left: 2%;
+              top: 12%;
+              --angle: -6deg;
+              --scale: 0.82;
+              --reveal-delay: 0.08s;
+            "
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="house"
+            data-reveal="fade"
+            style="
+              right: 5%;
+              top: 69%;
+              --angle: 5deg;
+              --scale: 0.82;
+              --reveal-delay: 0.14s;
+            "
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="district__label"
+            data-reveal="fade"
+            style="--reveal-delay: 0.18s"
+          >
+            Reading Lane
+          </div>
+          <div
+            class="mailbox"
+            data-reveal="fade"
+            style="right: 8%; top: 40%; --angle: -8deg; --reveal-delay: 0.24s"
+          ></div>
+          <div
+            class="bench"
+            data-reveal="fade"
+            style="right: 7%; top: 24%; --angle: 4deg; --reveal-delay: 0.22s"
+          ></div>
+          <div
+            class="flower-bed"
+            data-reveal="fade"
+            style="right: 8%; top: 60%; --angle: -4deg; --reveal-delay: 0.3s"
+          ></div>
+          <div class="stone" style="left: 23%; top: 15%; --angle: 18deg"></div>
+          <div
+            class="stone"
+            style="left: 25%; top: 21%; width: 36px; --angle: -8deg"
+          ></div>
+          <div
+            class="paper-boat"
+            data-reveal="fade"
+            style="right: 7%; top: 9%; --angle: 6deg; --reveal-delay: 0.28s"
+          ></div>
+          <div
+            class="crate-stack"
+            data-reveal="fade"
+            style="right: 6%; top: 48%; --angle: 3deg; --reveal-delay: 0.32s"
+          ></div>
+
+          <div class="district__content district__content--posts">
+            <div
+              class="district__panel"
+              data-reveal="rise"
+              style="--reveal-delay: 0.08s"
+            >
+              <div class="section-head section-head--compact">
+                <p class="eyebrow">Latest notes</p>
+                <h2>Recent paths through the blog</h2>
+                <p class="section-copy">
+                  页面往下不再跳出这个世界，而是继续沿着小路往前走。文章列表像村子里的几个停靠点，读起来更像散步。
+                </p>
+              </div>
+
+              <div class="route-pills">
+                <span
+                  class="route-pill"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.14s"
+                  >Essay Orchard</span
+                >
+                <span
+                  class="route-pill"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.18s"
+                  >Build Shed</span
+                >
+                <span
+                  class="route-pill"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.22s"
+                  >Photo Pond</span
+                >
+                <span
+                  class="route-pill"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.26s"
+                  >Tiny Notes</span
+                >
+              </div>
+
+              <div class="post-grid">
+                <article
+                  class="post-card"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.16s"
+                >
+                  <span class="post-card__tag">Essay</span>
+                  <h3>把博客做成散步地图，而不是信息面板</h3>
+                  <p>
+                    记录首页视觉方向，保留足够的留白、可爱的地景元素，以及能慢慢展开的阅读体验。
+                  </p>
+                </article>
+
+                <article
+                  class="post-card"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.22s"
+                >
+                  <span class="post-card__tag">Build log</span>
+                  <h3>静态首页的第一版结构</h3>
+                  <p>
+                    用最简单的 HTML、CSS、JS
+                    起一个可预览版本，后续再决定是否迁移到框架。
+                  </p>
+                </article>
+
+                <article
+                  class="post-card"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.28s"
+                >
+                  <span class="post-card__tag">Photo walk</span>
+                  <h3>春天颜色应该怎么落在网页里</h3>
+                  <p>
+                    用奶油白、果树绿、湖水蓝和桃色屋顶，让整个页面像一本会呼吸的插画本。
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="walker"
+            data-reveal="fade"
+            style="
+              left: 17%;
+              bottom: 14%;
+              --angle: -4deg;
+              --reveal-delay: 0.24s;
+            "
+          >
+            <span class="walker__head"></span>
+            <span class="walker__body"></span>
+          </div>
+
+          <div
+            class="walker walker--purple"
+            data-reveal="fade"
+            style="right: 9%; bottom: 14%; --angle: 6deg; --reveal-delay: 0.3s"
+          >
+            <span class="walker__head"></span>
+            <span class="walker__body"></span>
+          </div>
+        </section>
+
+        <section class="district district--garden map-area" id="garden">
+          <div
+            class="tree"
+            style="top: 5%; left: 20%; --angle: -9deg; --scale: 0.9"
+          ></div>
+          <div
+            class="tree"
+            style="top: 22%; right: 6%; --angle: 5deg; --scale: 0.94"
+          ></div>
+          <div
+            class="tree"
+            style="top: 49%; left: 10%; --angle: 6deg; --scale: 0.92"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 21%; left: 31%; --angle: -5deg; --scale: 0.96"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 15%; right: 29%; --angle: 8deg; --scale: 1.02"
+          ></div>
+
+          <div class="apple" style="left: 29%; top: 28%; --angle: -10deg"></div>
+          <div class="apple" style="right: 11%; top: 29%; --angle: 16deg"></div>
+          <div
+            class="apple"
+            style="right: 20%; bottom: 24%; --angle: -8deg"
+          ></div>
+
+          <div
+            class="spark"
+            style="left: 20%; top: 40%; animation-delay: -1.1s"
+          ></div>
+          <div
+            class="spark"
+            style="right: 23%; top: 52%; animation-delay: -2.2s"
+          ></div>
+          <div
+            class="spark"
+            style="left: 47%; bottom: 19%; animation-delay: -3.1s"
+          ></div>
+
+          <div
+            class="house"
+            data-reveal="fade"
+            style="
+              right: 2%;
+              top: 6%;
+              --angle: 4deg;
+              --scale: 0.78;
+              --reveal-delay: 0.08s;
+            "
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="district__label"
+            data-reveal="fade"
+            style="
+              left: 50%;
+              right: auto;
+              transform: translateX(-50%);
+              --reveal-delay: 0.18s;
+            "
+          >
+            Topic Garden
+          </div>
+          <div
+            class="bench"
+            data-reveal="fade"
+            style="right: 5%; top: 30%; --angle: -5deg; --reveal-delay: 0.26s"
+          ></div>
+          <div
+            class="picnic"
+            data-reveal="fade"
+            style="right: 17%; top: 11%; --angle: 4deg; --reveal-delay: 0.28s"
+          ></div>
+
+          <div class="district__content district__content--split">
+            <div
+              class="district__panel"
+              data-reveal="rise"
+              style="--reveal-delay: 0.08s"
+            >
+              <p class="eyebrow">Explore districts</p>
+              <h2>Below the fold, the map keeps unfolding</h2>
+              <p class="section-copy">
+                可以把分类、专题和固定栏目都做成几个地点。用户不是在切换模块，而是在继续逛这个博客小镇。
+              </p>
+
+              <div class="route-list">
+                <article
+                  class="route-item"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.14s"
+                >
+                  <strong>Essay Orchard</strong>
+                  <span>长文、短想法、周记，适合慢慢读。</span>
+                </article>
+                <article
+                  class="route-item"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.2s"
+                >
+                  <strong>Build Shed</strong>
+                  <span>开发记录、调样式过程、做站笔记。</span>
+                </article>
+                <article
+                  class="route-item"
+                  data-reveal="rise"
+                  style="--reveal-delay: 0.26s"
+                >
+                  <strong>Photo Pond</strong>
+                  <span>图片、色彩灵感、散步途中拍到的东西。</span>
+                </article>
+              </div>
+            </div>
+
+            <div class="spot-grid">
+              <article
+                class="spot-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.18s"
+              >
+                <span class="post-card__tag">Essays</span>
+                <h3>Essay Orchard</h3>
+                <p>放长一点的文章、阶段总结和那些值得单独记下来的感受。</p>
+              </article>
+
+              <article
+                class="spot-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.24s"
+              >
+                <span class="post-card__tag">Build</span>
+                <h3>Build Shed</h3>
+                <p>
+                  把这个博客从样式、结构到组件拆开记录，像搭一间木屋一样往上长。
+                </p>
+              </article>
+
+              <article
+                class="spot-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.3s"
+              >
+                <span class="post-card__tag">Photos</span>
+                <h3>Photo Pond</h3>
+                <p>
+                  颜色、照片和零碎灵感汇进水面，适合做一个轻一点的视觉栏目。
+                </p>
+              </article>
+
+              <article
+                class="spot-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.36s"
+              >
+                <span class="post-card__tag">Links</span>
+                <h3>Tiny Notice Board</h3>
+                <p>
+                  收藏夹、近期在看、短链接和一闪而过的小念头，都可以钉在这里。
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="district district--home map-area" id="about">
+          <div
+            class="tree"
+            style="
+              top: 6%;
+              left: 26%;
+              --angle: -8deg;
+              --scale: 0.92;
+              --shift-y: -5px;
+            "
+          ></div>
+          <div class="tree" style="top: 22%; right: 26%; --angle: 4deg"></div>
+          <div
+            class="tree"
+            style="top: 56%; right: 11%; --angle: -5deg; --scale: 0.9"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 18%; left: 29%; --angle: 7deg; --scale: 0.94"
+          ></div>
+          <div
+            class="tree"
+            style="bottom: 24%; right: 34%; --angle: -8deg; --scale: 1.04"
+          ></div>
+
+          <div class="apple" style="left: 35%; top: 18%; --angle: -10deg"></div>
+          <div class="apple" style="right: 31%; top: 34%; --angle: 14deg"></div>
+          <div
+            class="apple"
+            style="left: 13%; bottom: 18%; --angle: -18deg"
+          ></div>
+
+          <div
+            class="spark"
+            style="left: 50%; top: 17%; animation-delay: -1.7s"
+          ></div>
+          <div
+            class="spark"
+            style="right: 18%; top: 47%; animation-delay: -2.7s"
+          ></div>
+          <div
+            class="spark"
+            style="left: 48%; bottom: 26%; animation-delay: -0.7s"
+          ></div>
+
+          <div
+            class="house"
+            data-reveal="fade"
+            style="
+              left: 40%;
+              top: 2%;
+              margin-top: -5px;
+              --angle: -4deg;
+              --scale: 0.78;
+              --reveal-delay: 0.08s;
+            "
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="house"
+            data-reveal="fade"
+            style="
+              right: 4%;
+              top: 68%;
+              --angle: 4deg;
+              --scale: 0.8;
+              --reveal-delay: 0.12s;
+            "
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="district__label"
+            data-reveal="fade"
+            style="--reveal-delay: 0.18s"
+          >
+            Home Cabin
+          </div>
+          <div
+            class="flower-bed"
+            data-reveal="fade"
+            style="right: 5%; top: 39%; --angle: -4deg; --reveal-delay: 0.28s"
+          ></div>
+          <div
+            class="clothesline"
+            data-reveal="fade"
+            style="left: 57%; top: 5%; margin-top: -5px; --reveal-delay: 0.26s"
+          ></div>
+          <div
+            class="lantern-post"
+            data-reveal="fade"
+            style="right: 6%; top: 17%; --angle: 2deg; --reveal-delay: 0.3s"
+          ></div>
+
+          <div class="district__content district__content--about">
+            <div
+              class="about__panel"
+              data-reveal="rise"
+              style="--reveal-delay: 0.08s"
+            >
+              <p class="eyebrow">About garden</p>
+              <h2>这个博客可以慢慢长成一座小村庄</h2>
+              <p>
+                首页是入口，下面是阅读路线，再往后可以继续长出文章详情页、标签页、归档页，甚至做成一张完整的互动地图。
+              </p>
+              <p>
+                现在这个版本先把气质、节奏和延伸感搭出来，后面无论你接静态博客，还是迁到
+                Vue、React、Next.js，视觉方向都已经很清楚了。
+              </p>
+
+              <div class="about-note">
+                下一步很适合继续补导航、文章详情页首屏、标签筛选，或者把这些卡片接成真实数据。
+              </div>
+
+              <div class="panel-actions">
+                <a class="button button--primary" href="#posts">Back to Lane</a>
+                <a class="button button--ghost" href="#garden">Visit Garden</a>
+              </div>
+            </div>
+
+            <div class="info-stack">
+              <article
+                class="info-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.16s"
+              >
+                <span class="post-card__tag">Rhythm</span>
+                <h3>每周 2-3 篇更新</h3>
+                <p>保持轻一点的更新频率，让博客像持续有人照看的小地方。</p>
+              </article>
+
+              <article
+                class="info-card"
+                data-reveal="rise"
+                style="--reveal-delay: 0.22s"
+              >
+                <span class="post-card__tag">Now reading</span>
+                <h3>Design notes + tiny life logs</h3>
+                <p>适合放当前在做的设计想法、工具记录和一些日常观察。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="mobile-world">
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#m-posts">文章</a>
+        <a href="#m-archive">归档</a>
+        <a href="#m-about">关于</a>
+      </nav>
+
+      <main class="mobile-main">
+        <section class="mobile-hero" id="m-home">
+          <div class="mobile-hero__scene" aria-hidden="true">
+            <div class="kite mobile-hero__kite" style="--angle: -12deg"></div>
+            <svg
+              class="kite-string mobile-hero__string"
+              viewBox="0 0 120 160"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path d="M16 10 C 48 34, 20 66, 58 94 C 88 116, 76 138, 96 150" />
+            </svg>
+            <div
+              class="walker mobile-hero__walker"
+              style="--angle: -4deg; --scale: 0.72"
+            >
+              <span class="walker__head"></span>
+              <span class="walker__body"></span>
+            </div>
+            <div
+              class="tree mobile-hero__tree"
+              style="--angle: -7deg; --scale: 0.82"
+            ></div>
+            <div
+              class="house mobile-hero__house"
+              style="--angle: 5deg; --scale: 0.58"
+            >
+              <span class="house__roof"></span>
+              <span class="house__body"></span>
+              <span class="house__door"></span>
+            </div>
+            <div class="pond mobile-hero__pond"></div>
+            <div
+              class="flower-bed mobile-hero__flowers"
+              style="--angle: -5deg"
+            ></div>
+          </div>
+
+          <article class="mobile-panel mobile-panel--hero" data-reveal="rise">
+            <p class="eyebrow">Personal blog</p>
+            <h1>Crossing Notes</h1>
+            <p class="intro-copy">
+              一个像小镇地图一样展开的博客首页。这里放随笔、开发记录、生活观察，
+              节奏轻一点，视觉也轻一点。
+            </p>
+            <p class="intro-meta">
+              手机端改成更干净的阅读版，首屏只看入口卡片，继续往下再读文章、归档和关于。
+            </p>
+            <div class="intro-actions mobile-actions">
+              <a class="button button--primary" href="#m-posts">查看文章</a>
+              <a class="button button--ghost" href="#m-archive">看看归档</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="mobile-section mobile-section--posts" id="m-posts">
+          <div
+            class="flower-bed mobile-section__ornament mobile-section__ornament--flowers"
+            style="--angle: -6deg"
+            aria-hidden="true"
+          ></div>
+
+          <div class="mobile-panel mobile-panel--section" data-reveal="rise">
+            <p class="eyebrow">Latest notes</p>
+            <h2>Recent paths through the blog</h2>
+            <p class="section-copy">
+              页面往下不再跳出这个世界，而是继续沿着小路往前走。文章列表像村子里的几个停靠点，读起来更像散步。
+            </p>
+
+            <div class="mobile-chip-grid">
+              <span class="mobile-chip">Essay Orchard</span>
+              <span class="mobile-chip">Build Shed</span>
+              <span class="mobile-chip">Photo Pond</span>
+              <span class="mobile-chip">Tiny Notes</span>
+            </div>
+          </div>
+
+          <article
+            class="mobile-entry mobile-entry--feature"
+            data-reveal="rise"
+            style="--reveal-delay: 0.08s"
+          >
+            <span class="post-card__tag">Essay</span>
+            <h3>把博客做成散步地图，而不是信息面板</h3>
+            <p>
+              记录首页视觉方向，保留足够的留白、可爱的地景元素，以及能慢慢展开的阅读体验。
+            </p>
+          </article>
+
+          <div class="mobile-stack">
+            <article
+              class="mobile-entry"
+              data-reveal="rise"
+              style="--reveal-delay: 0.14s"
+            >
+              <span class="post-card__tag">Build log</span>
+              <h3>静态首页的第一版结构</h3>
+              <p>
+                用最简单的 HTML、CSS、JS
+                起一个可预览版本，后续再决定是否迁移到框架。
+              </p>
+            </article>
+
+            <article
+              class="mobile-entry"
+              data-reveal="rise"
+              style="--reveal-delay: 0.2s"
+            >
+              <span class="post-card__tag">Photo walk</span>
+              <h3>春天颜色应该怎么落在网页里</h3>
+              <p>
+                用奶油白、果树绿、湖水蓝和桃色屋顶，让整个页面像一本会呼吸的插画本。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="mobile-section mobile-section--archive" id="m-archive">
+          <div
+            class="tree mobile-section__ornament mobile-section__ornament--tree"
+            style="--angle: -7deg; --scale: 0.78"
+            aria-hidden="true"
+          ></div>
+
+          <div class="mobile-panel mobile-panel--section" data-reveal="rise">
+            <p class="eyebrow">Explore districts</p>
+            <h2>Below the fold, the map keeps unfolding</h2>
+            <p class="section-copy">
+              可以把分类、专题和固定栏目都做成几个地点。用户不是在切换模块，而是在继续逛这个博客小镇。
+            </p>
+          </div>
+
+          <div class="mobile-route-list">
+            <article
+              class="mobile-route-card"
+              data-reveal="rise"
+              style="--reveal-delay: 0.08s"
+            >
+              <strong>Essay Orchard</strong>
+              <span>长文、短想法、周记，适合慢慢读。</span>
+            </article>
+            <article
+              class="mobile-route-card"
+              data-reveal="rise"
+              style="--reveal-delay: 0.14s"
+            >
+              <strong>Build Shed</strong>
+              <span>开发记录、调样式过程、做站笔记。</span>
+            </article>
+            <article
+              class="mobile-route-card"
+              data-reveal="rise"
+              style="--reveal-delay: 0.2s"
+            >
+              <strong>Photo Pond</strong>
+              <span>图片、色彩灵感、散步途中拍到的东西。</span>
+            </article>
+          </div>
+
+          <div class="mobile-stack mobile-stack--compact">
+            <article
+              class="mobile-entry mobile-entry--compact"
+              data-reveal="rise"
+              style="--reveal-delay: 0.26s"
+            >
+              <span class="post-card__tag">Essays</span>
+              <h3>Essay Orchard</h3>
+              <p>放长一点的文章、阶段总结和那些值得单独记下来的感受。</p>
+            </article>
+
+            <article
+              class="mobile-entry mobile-entry--compact"
+              data-reveal="rise"
+              style="--reveal-delay: 0.32s"
+            >
+              <span class="post-card__tag">Links</span>
+              <h3>Tiny Notice Board</h3>
+              <p>
+                收藏夹、近期在看、短链接和一闪而过的小念头，都可以钉在这里。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="mobile-section mobile-section--about" id="m-about">
+          <div
+            class="house mobile-section__ornament mobile-section__ornament--house"
+            style="--angle: 6deg; --scale: 0.48"
+            aria-hidden="true"
+          >
+            <span class="house__roof"></span>
+            <span class="house__body"></span>
+            <span class="house__door"></span>
+          </div>
+
+          <div
+            class="mobile-panel mobile-panel--section mobile-panel--about"
+            data-reveal="rise"
+          >
+            <p class="eyebrow">About garden</p>
+            <h2>这个博客可以慢慢长成一座小村庄</h2>
+            <p>
+              首页是入口，下面是阅读路线，再往后可以继续长出文章详情页、标签页、归档页，甚至做成一张完整的互动地图。
+            </p>
+            <p>
+              现在这个版本先把气质、节奏和延伸感搭出来，后面无论你接静态博客，还是迁到
+              Vue、React、Next.js，视觉方向都已经很清楚了。
+            </p>
+
+            <div class="about-note">
+              下一步很适合继续补导航、文章详情页首屏、标签筛选，或者把这些卡片接成真实数据。
+            </div>
+
+            <div class="panel-actions mobile-actions">
+              <a class="button button--primary" href="#m-posts">回到文章</a>
+              <a class="button button--ghost" href="#m-home">回到顶部</a>
+            </div>
+          </div>
+
+          <div class="mobile-stack">
+            <article
+              class="mobile-entry mobile-entry--compact"
+              data-reveal="rise"
+              style="--reveal-delay: 0.12s"
+            >
+              <span class="post-card__tag">Rhythm</span>
+              <h3>每周 2-3 篇更新</h3>
+              <p>保持轻一点的更新频率，让博客像持续有人照看的小地方。</p>
+            </article>
+
+            <article
+              class="mobile-entry mobile-entry--compact"
+              data-reveal="rise"
+              style="--reveal-delay: 0.18s"
+            >
+              <span class="post-card__tag">Now reading</span>
+              <h3>Design notes + tiny life logs</h3>
+              <p>适合放当前在做的设计想法、工具记录和一些日常观察。</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
