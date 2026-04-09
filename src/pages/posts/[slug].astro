@@ -69,10 +69,16 @@ const tableOfContents = post
     <script type="module" src={postScript}></script>
   </Fragment>
 
-  <div class="map-world map-world--plain">
+  <div class="map-world map-world--plain map-world--article-mobile">
     <div class="map-world__pattern"></div>
 
-    <nav class="hero__hud hero__hud--plain" aria-label="Article navigation">
+    <nav class="hero__hud hero__hud--plain article-desktop-nav" aria-label="Article navigation">
+      <a href="/">首页</a>
+      <a href="/archive">归档</a>
+      <a href="/about">关于</a>
+    </nav>
+
+    <nav class="article-mobile-nav" aria-label="Article navigation">
       <a href="/">首页</a>
       <a href="/archive">归档</a>
       <a href="/about">关于</a>
