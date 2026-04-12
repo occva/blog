@@ -2213,6 +2213,7 @@ main {
 
   .mobile-world,
   .map-world--article-mobile {
+    --article-mobile-nav-space: calc(112px + env(safe-area-inset-top));
     position: relative;
     display: block;
     min-height: 100svh;
@@ -2303,6 +2304,27 @@ main {
     background: rgba(255, 248, 236, 0.56);
     box-shadow: 0 12px 28px rgba(123, 132, 78, 0.12);
     transform: translateX(-50%);
+  }
+
+  .article-mobile-nav {
+    --article-nav-progress: 0;
+    --article-nav-y: 0px;
+    transform:
+      translateX(-50%)
+      translateY(var(--article-nav-y))
+      scale(calc(1 - var(--article-nav-progress) * 0.14));
+    transform-origin: 50% 0;
+    opacity: calc(1 - var(--article-nav-progress));
+    filter: blur(calc(var(--article-nav-progress) * 6px));
+    will-change: transform, opacity, filter;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .article-mobile-nav.is-hidden {
+    pointer-events: none;
   }
 
   .mobile-nav a,
@@ -2888,6 +2910,27 @@ main {
   box-shadow: 0 10px 24px rgba(137, 144, 101, 0.08);
 }
 
+.article-desktop-nav {
+  --article-nav-progress: 0;
+  --article-nav-y: 0px;
+  transform:
+    translateX(-50%)
+    translateY(var(--article-nav-y))
+    scale(calc(1 - var(--article-nav-progress) * 0.14));
+  transform-origin: 50% 0;
+  opacity: calc(1 - var(--article-nav-progress));
+  filter: blur(calc(var(--article-nav-progress) * 6px));
+  will-change: transform, opacity, filter;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.article-desktop-nav.is-hidden {
+  pointer-events: none;
+}
+
 .plain-page {
   position: relative;
   z-index: 2;
@@ -3471,7 +3514,7 @@ main {
 
   .plain-page--article {
     width: calc(100% - 20px);
-    padding-top: calc(116px + env(safe-area-inset-top));
+    padding-top: var(--article-mobile-nav-space);
   }
 
   .plain-panel,

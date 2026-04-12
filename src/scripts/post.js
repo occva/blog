@@ -195,11 +195,153 @@ const setupResponsiveTables = () => {
   });
 };
 
+const setupFloatingArticleNav = ({
+  selector,
+  mediaQuery,
+  spaceTargetSelector,
+  spaceProperty,
+}) => {
+  const nav = document.querySelector(selector);
+  const spaceTarget = spaceTargetSelector
+    ? document.querySelector(spaceTargetSelector)
+    : null;
+
+  if (!(nav instanceof HTMLElement)) {
+    return;
+  }
+
+  if (spaceTargetSelector && !(spaceTarget instanceof HTMLElement)) {
+    return;
+  }
+
+  const query = window.matchMedia(mediaQuery);
+  let lastY = window.scrollY;
+  let hiddenOffset = 0;
+  let maxOffset = 1;
+  let ticking = false;
+
+  const applyState = () => {
+    const progress = Math.min(hiddenOffset / maxOffset, 1);
+
+    nav.style.setProperty("--article-nav-y", `${-hiddenOffset}px`);
+    nav.style.setProperty("--article-nav-progress", progress.toFixed(3));
+    nav.classList.toggle("is-hidden", progress > 0.98);
+  };
+
+  const measure = () => {
+    if (!query.matches) {
+      hiddenOffset = 0;
+      maxOffset = 1;
+      nav.classList.remove("is-hidden");
+      nav.style.removeProperty("--article-nav-y");
+      nav.style.removeProperty("--article-nav-progress");
+
+      if (spaceTarget instanceof HTMLElement && spaceProperty) {
+        spaceTarget.style.removeProperty(spaceProperty);
+      }
+
+      lastY = window.scrollY;
+      return;
+    }
+
+    const navTop = parseFloat(window.getComputedStyle(nav).top) || 0;
+    const navHeight = nav.offsetHeight;
+    const contentGap = 18;
+    const hideBuffer = 14;
+
+    if (spaceTarget instanceof HTMLElement && spaceProperty) {
+      spaceTarget.style.setProperty(
+        spaceProperty,
+        `${Math.ceil(navTop + navHeight + contentGap)}px`,
+      );
+    }
+
+    maxOffset = Math.max(Math.ceil(navTop + navHeight + hideBuffer), 1);
+    hiddenOffset = Math.min(hiddenOffset, maxOffset);
+    applyState();
+  };
+
+  const update = () => {
+    ticking = false;
+
+    if (!query.matches) {
+      return;
+    }
+
+    const currentY = Math.max(window.scrollY, 0);
+    const delta = currentY - lastY;
+    lastY = currentY;
+
+    if (currentY <= 8) {
+      hiddenOffset = 0;
+      applyState();
+      return;
+    }
+
+    if (Math.abs(delta) < 0.5) {
+      return;
+    }
+
+    hiddenOffset = Math.min(Math.max(hiddenOffset + delta, 0), maxOffset);
+    applyState();
+  };
+
+  const scheduleUpdate = () => {
+    if (ticking) {
+      return;
+    }
+
+    ticking = true;
+
+    window.requestAnimationFrame(update);
+  };
+
+  const handleResize = () => {
+    measure();
+    lastY = window.scrollY;
+  };
+
+  measure();
+  applyState();
+
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", handleResize);
+  window.visualViewport?.addEventListener("resize", handleResize);
+  nav.addEventListener("focusin", () => {
+    hiddenOffset = 0;
+    applyState();
+  });
+
+  if (typeof query.addEventListener === "function") {
+    query.addEventListener("change", handleResize);
+    return;
+  }
+
+  if (typeof query.addListener === "function") {
+    query.addListener(handleResize);
+  }
+};
+
+const setupArticleNavs = () => {
+  setupFloatingArticleNav({
+    selector: ".article-desktop-nav",
+    mediaQuery: "(min-width: 721px)",
+  });
+
+  setupFloatingArticleNav({
+    selector: ".article-mobile-nav",
+    mediaQuery: "(max-width: 720px)",
+    spaceTargetSelector: ".map-world--article-mobile",
+    spaceProperty: "--article-mobile-nav-space",
+  });
+};
+
 ready(() => {
   assignHeadingAnchors();
   setupActiveDots();
   setupResponsiveTables();
   setupCopyButtons();
+  setupArticleNavs();
 
   if (window.location.hash) {
     window.setTimeout(jumpToHash, 0);
